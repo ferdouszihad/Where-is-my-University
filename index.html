@@ -36,7 +36,7 @@
       </div>
    </header>
 
-   <div class="modal fade modal-lg modal-dialog-scrollable" id="exampleModal" tabindex="-1"
+   <div class="modal fade modal-lg modal-dialog-scrollable" id="uniModal" tabindex="-1"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content" style="max-height:650px">
@@ -138,102 +138,15 @@
                </button>
             </div>
          </div>
-
+         <!-- এই কন্টেইনারে ডাটা কে ডিসপ্লে করবো। -->
          <div class="container my-5">
             <div id="display-container" class="row row-cols-1 row-cols-lg-2 g-4">
-               <div class="col">
-                  <div class="card mb-3" style="max-width: 540px;">
-                     <div class="row g-0">
-                        <div class="col-md-4">
-                           <div style="background:rgba(94,94,61,0.3)"
-                              class="d-flex h-100 align-items-center justify-content-center">
-                              <h2>AIUB</h2>
-                           </div>
-                        </div>
-                        <div class="col-md-8">
-                           <div class="card-body">
-                              <h5 class="card-title">American International University - Bangladesh</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                 to additional content. This content is a little bit longer.</p>
-                              <button onclick="displayDetail(1)" class="btn btn-dark" data-bs-toggle="modal"
-                                 data-bs-target="#exampleModal">See Details</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-
-               <div class="col">
-                  <div class="card mb-3" style="max-width: 540px;">
-                     <div class="row g-0">
-                        <div class="col-md-4">
-                           <div style="background:rgba(24,197,225,0.3)"
-                              class="d-flex h-100 align-items-center justify-content-center">
-                              <h2>ASAUB</h2>
-                           </div>
-                        </div>
-                        <div class="col-md-8">
-                           <div class="card-body">
-                              <h5 class="card-title">Asa University Bangladesh</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                 to additional content. This content is a little bit longer.</p>
-                              <button onclick="displayDetail(2)" class="btn btn-dark" data-bs-toggle="modal"
-                                 data-bs-target="#exampleModal">See Details</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-
-               <div class="col">
-                  <div class="card mb-3" style="max-width: 540px;">
-                     <div class="row g-0">
-                        <div class="col-md-4">
-                           <div style="background:rgba(26,39,142,0.3)"
-                              class="d-flex h-100 align-items-center justify-content-center">
-                              <h2>ADUST</h2>
-                           </div>
-                        </div>
-                        <div class="col-md-8">
-                           <div class="card-body">
-                              <h5 class="card-title">Atish Dipankar University</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                 to additional content. This content is a little bit longer.</p>
-                              <button onclick="displayDetail(3)" class="btn btn-dark" data-bs-toggle="modal"
-                                 data-bs-target="#exampleModal">See Details</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col">
-                  <div class="card mb-3" style="max-width: 540px;">
-                     <div class="row g-0">
-                        <div class="col-md-4">
-                           <div style="background:rgba(26,39,142,0.3)"
-                              class="d-flex h-100 align-items-center justify-content-center">
-                              <h2>ADUST</h2>
-                           </div>
-                        </div>
-                        <div class="col-md-8">
-                           <div class="card-body">
-                              <h5 class="card-title">Atish Dipankar University</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                 to additional content. This content is a little bit longer.</p>
-                              <button onclick="displayDetail(3)" class="btn btn-dark" data-bs-toggle="modal"
-                                 data-bs-target="#exampleModal">See Details</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
 
 
             </div>
             <div class="button-space mt-3 text-end container">
-               <button class="btn btn-outline-dark px-5 me-5">See More</button>
+               <!-- see more Button  এইখানে  -->
+               <button id="see-more-btn" class="btn btn-outline-dark px-5 me-5">See More</button>
             </div>
          </div>
       </section>
