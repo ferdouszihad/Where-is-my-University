@@ -1,7 +1,11 @@
 // ডাটা ফেচ করতে হবে - Done
 // ফেচ করা ডাটা ডিসপ্লে করাতে হবে। - Done
 // See More বাটন কে ফাংশনাল করবো। - Done
-// See More এ একবার ক্লিক হলে এটা হাইড হয়ে যাবে
+// See More এ একবার ক্লিক হলে এটা হাইড হয়ে যাবে-Done
+// Add Modal to our Application - Done
+
+// Make Title Dynamic - Done
+// Make Logo Dynamic -  Done
 const loadData = () => {
   const url = "https://bd-education-techsoros.vercel.app/v1/all/";
   fetch(url)
@@ -9,7 +13,7 @@ const loadData = () => {
     .then((data) => displayData(data.result.slice(0, 4)));
 };
 
-////object prototype
+// ////object prototype
 // const uni = {
 //   id: 66,
 //   name: "Sylhet International University",
@@ -50,8 +54,10 @@ const displayData = (universities) => {
                                   : "No Data Found"
                               } ...
                               </p>
-                              <button onclick="displayDetail(3)" class="btn btn-dark" data-bs-toggle="modal"
-                                 data-bs-target="#uniModal">See Details</button>
+                              <button onclick=loadDatainModal(${uni.id})
+                               type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              Launch demo modal
+                              </button>
                            </div>
                         </div>
                      </div>
@@ -63,6 +69,82 @@ const displayData = (universities) => {
   });
 };
 
+const loadDatainModal = (id) => {
+  //   console.log(id);
+  const url = `https://bd-education-techsoros.vercel.app/v1/detail/${id}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      displayModalData(data);
+    });
+};
+
+const uni = {
+  domains: ["atishdipankaruniversity.edu.bd"],
+  country: "Bangladesh",
+  web_pages: ["http://www.adust.edu.bd/"],
+  name: "Atish Dipankar University",
+  alpha_two_code: "BD",
+  id: 3,
+  desc: "Atish Dipankar University of Science and Technology (ADUST) is a private university located in Dhaka, Bangladesh. Established in 2004, it offers undergraduate and graduate programs in a range of disciplines including Engineering, Business, Law, and Arts and Social Sciences. ADUST prides itself on its highly qualified faculty, modern facilities, and strong industry ties that provide students with opportunities for internships and practical training. The university emphasizes research, community service, and a student-centered approach to education, aimed at producing graduates who are ready to succeed in the global job market. Overall, ADUST is committed to providing a quality education that prepares students for the challenges of the 21st century.",
+  universityType: "private",
+  established_in: 2004,
+  best_subjects: [
+    "Mass Communication & Journalism",
+    "Information Technology",
+    "Botany",
+    "Forestry",
+  ],
+  keyInformations: {
+    "info-1":
+      "Atish Dipankar University of Science and Technology (ADUST) is a private university located in Dhaka, Bangladesh",
+    "info-2":
+      " Established in 2004, it offers undergraduate and graduate programs in a range of disciplines including Engineering, Business, Law, and Arts and Social Sciences",
+    "info-3":
+      " ADUST prides itself on its highly qualified faculty, modern facilities, and strong industry ties that provide students with opportunities for internships and practical training",
+    "info-4":
+      " The university emphasizes research, community service, and a student-centered approach to education, aimed at producing graduates who are ready to succeed in the global job market",
+    "info-5":
+      " Overall, ADUST is committed to providing a quality education that prepares students for the challenges of the 21st century",
+  },
+  logo: {
+    title: "ADUST",
+    color: "rgba(26,39,142,0.3)",
+  },
+};
+const displayModalData = (uni) => {
+  console.log(uni);
+
+  //set Dynamic Title
+  const title = get("title");
+  title.innerHTML = uni.name;
+
+  //set Logo Dynamically
+  get("modal-logo").innerHTML = `
+               <h1>${uni.logo.title}</h1>
+               <p>${uni.name}</p>
+  
+  `;
+
+  //set Date Dynamically
+  get("date").innerText = uni.established_in
+    ? uni.established_in
+    : "Date Not Found";
+
+  //set Subject Dynamically
+  get("subject").innerHTML = `
+  ${getListFromArray(uni.best_subjects)}
+  `;
+
+  //set Website Dynamically
+  get("website").innerHTML = `
+  <i class="fa-solid fa-earth-americas me-3"></i>
+   <span>${uni.domains[0]}</span>
+  `;
+  get("website").setAttribute("href", uni.web_pages[0]);
+  console.log(title);
+};
+
 document.getElementById("see-more-btn").addEventListener("click", () => {
   const url = "https://bd-education-techsoros.vercel.app/v1/all/";
   fetch(url)
@@ -72,5 +154,16 @@ document.getElementById("see-more-btn").addEventListener("click", () => {
       document.getElementById("see-more-btn").style.display = "none";
     });
 });
+
+const get = (id) => {
+  return document.getElementById(id);
+};
+const getListFromArray = (arr) => {
+  console.log(arr);
+  const list = arr.map((element) => `<li>${element}</li>`);
+  console.log(list);
+  //join Method Converts an array into a string
+  return list.join("");
+};
 
 loadData();

@@ -36,21 +36,19 @@
       </div>
    </header>
 
-   <div class="modal fade modal-lg modal-dialog-scrollable" id="uniModal" tabindex="-1"
-      aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <!-- Modal -->
+   <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog">
-         <div class="modal-content" style="max-height:650px">
+         <div class="modal-content">
             <div class="modal-header">
-               <h1 id="title" class="modal-title fs-5" id="exampleModalLabel">
-                  American International University - Bangladesh
-               </h1>
+               <h1 id="title" class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <div class="main-heading bg-dark text-warning py-3">
-                  <div class="d-flex flex-column justify-content-center align-items-center">
-                     <h1>AIUB</h1>
-                     <p>American International University - Bangladesh</p>
+                  <div id="modal-logo" class="d-flex flex-column justify-content-center align-items-center">
+                     <!-- dynamic Value -->
                   </div>
                </div>
                <div class="container">
@@ -93,13 +91,13 @@
                            <h6>Established at </h6>
                            <hr>
 
-                           <p><i class="fa-solid fa-calendar-days me-3"></i> <strong>2002</strong></p>
+                           <p><i class="fa-solid fa-calendar-days me-3"></i> <strong id="date">2002</strong></p>
 
                         </div>
                         <div class="faculty py-3 my-3">
                            <h6>Best Faculty</h6>
                            <hr>
-                           <ul>
+                           <ul id="subject">
                               <li>Chemical Technical/Engineering</li>
                               <li>Computer Science Engineering</li>
                               <li>Mechanical Engineering</li>
@@ -112,16 +110,21 @@
                         <div class="links">
                            <h6>Website</h6>
                            <hr />
-                           <a class="btn btn-outline-primary d-block w-100" href="#"><i
-                                 class="fa-solid fa-earth-americas me-3"></i>au.ac.bd</a>
+                           <a id="website" class="btn btn-outline-primary d-block w-100" target="_blank" href="#">
+                              <i class="fa-solid fa-earth-americas me-3"></i>
+                              <span>au.ac.bd</span>
+
+                           </a>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
+
          </div>
       </div>
    </div>
+
 
    <main>
       <section class="search d-flex flex-column justify-content-center align-items-center">
@@ -159,3 +162,90 @@
 </body>
 
 </html>
+
+<div class="modal fade modal-lg modal-dialog-scrollable" id="uniModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="max-height:650px">
+         <div class="modal-header">
+            <h1 id="title" class="modal-title fs-5" id="exampleModalLabel">
+               American International University - Bangladesh
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <div class="main-heading bg-dark text-warning py-3">
+               <div class="d-flex flex-column justify-content-center align-items-center">
+                  <h1>AIUB</h1>
+                  <p>American International University - Bangladesh</p>
+               </div>
+            </div>
+            <div class="container">
+               <div class="row g-5">
+                  <div class="col-12 col-md-7">
+
+                     <div class="description py-3 my-3" style="text-align: justify">
+                        <h5>Things You Should know About AIUB</h5>
+                        <ul>
+                           <li class="mb-3">
+                              AIUB (American International University-Bangladesh) is a
+                              leading private university in Dhaka, Bangladesh.
+                           </li>
+                           <li class="mb-3">
+                              Established in 1994, it offers undergraduate and
+                              graduate programs in business, engineering, computer
+                              science, law, and liberal arts.
+                           </li>
+                           <li class="mb-3">With a focus on
+                              combining theoretical knowledge with practical skills,
+                              AIUB prepares students for the challenges of the 21st
+                              century.</li>
+                           <li class="mb-3">
+                              The university has a highly qualified faculty, modern
+                              facilities, and strong ties with industry and the community,
+                              providing students with opportunities for internships,
+                              research projects, and community service.
+
+                           </li>
+
+                           <li>AIUB is committed
+                              to providing its students with a high-quality education that
+                              prepares them for success in their chosen fields.</li>
+                        </ul>
+
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-5">
+                     <div class="faculty pt-3 my-3">
+                        <h6>Established at </h6>
+                        <hr>
+
+                        <p><i class="fa-solid fa-calendar-days me-3"></i> <strong>2002</strong></p>
+
+                     </div>
+                     <div class="faculty py-3 my-3">
+                        <h6>Best Faculty</h6>
+                        <hr>
+                        <ul>
+                           <li>Chemical Technical/Engineering</li>
+                           <li>Computer Science Engineering</li>
+                           <li>Mechanical Engineering</li>
+                           <li>Botany</li>
+                           <li>Textile Engineering</li>
+                           <li>Mechanical Engineering Engineering</li>
+                        </ul>
+                     </div>
+
+                     <div class="links">
+                        <h6>Website</h6>
+                        <hr />
+                        <a class="btn btn-outline-primary d-block w-100" href="#"><i
+                              class="fa-solid fa-earth-americas me-3"></i>au.ac.bd</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
