@@ -9,6 +9,7 @@
 // Make Logo Dynamic -  Done
 
 // Modal is Now Dynamic
+let isSearch = false;
 const loadData = () => {
   const url = "https://bd-education-techsoros.vercel.app/v1/all/";
   fetch(url)
@@ -30,6 +31,13 @@ const loadData = () => {
 //   },
 // };
 const displayData = (universities) => {
+  if (universities.length == 0) {
+    console.log(get("error"));
+    get("error").classList.remove("d-none");
+  } else {
+    console.log(get("error"));
+    get("error").classList.add("d-none");
+  }
   const container = document.getElementById("display-container");
   container.innerHTML = "";
   console.log(container);
@@ -156,7 +164,17 @@ const displayModalData = (uni) => {
 };
 
 document.getElementById("see-more-btn").addEventListener("click", () => {
-  const url = "https://bd-education-techsoros.vercel.app/v1/all/";
+  let url;
+  if (isSearch === true) {
+    url = `https://bd-education-techsoros.vercel.app/v1/all/search/${
+      get("input-search").value
+    }`;
+    console.log(url);
+  } else {
+    console.log(url);
+    url = "https://bd-education-techsoros.vercel.app/v1/all/";
+  }
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -164,6 +182,21 @@ document.getElementById("see-more-btn").addEventListener("click", () => {
       document.getElementById("see-more-btn").style.display = "none";
     });
 });
+
+const search = () => {
+  const searchText = document.getElementById("input-search").value;
+  isSearch = true;
+  const url = `https://bd-education-techsoros.vercel.app/v1/all/search/${searchText}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.result.length >= 4) {
+        displayData(data.result.slice(0, 4));
+      } else {
+        displayData(data.result);
+      }
+    });
+};
 
 const get = (id) => {
   return document.getElementById(id);
