@@ -78,6 +78,7 @@ const displayData = (universities) => {
     container.append(col);
     console.log(uni);
   });
+  spinner(false);
 };
 
 const loadDatainModal = (id) => {
@@ -136,6 +137,7 @@ const displayModalData = (uni) => {
                <p>${uni.name}</p>
   
   `;
+  get("logo-title").innerHTML = uni.logo.title;
 
   //set Date Dynamically
   get("date").innerText = uni.established_in
@@ -164,6 +166,7 @@ const displayModalData = (uni) => {
 };
 
 document.getElementById("see-more-btn").addEventListener("click", () => {
+  spinner(true);
   let url;
   if (isSearch === true) {
     url = `https://bd-education-techsoros.vercel.app/v1/all/search/${
@@ -184,16 +187,20 @@ document.getElementById("see-more-btn").addEventListener("click", () => {
 });
 
 const search = () => {
-  const searchText = document.getElementById("input-search").value;
+  const searchText = get("input-search").value;
   isSearch = true;
   const url = `https://bd-education-techsoros.vercel.app/v1/all/search/${searchText}`;
+  spinner(true);
+  console.log(url);
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      if (data.result.length >= 4) {
+      if (data?.result.length > 4) {
         displayData(data.result.slice(0, 4));
+        get("see-more-btn").style.display = "block";
       } else {
-        displayData(data.result);
+        displayData(data.result.slice(0, 4));
+        get("see-more-btn").style.display = "none";
       }
     });
 };
@@ -214,6 +221,17 @@ const getListFromObject = (obj) => {
     arr.push(`<li class="mb-3">${obj[key]}</li>`);
   }
   return arr.join("");
+};
+
+const spinner = (isLoading) => {
+  console.log(get("spinner"));
+  if (isLoading) {
+    console.log(isLoading);
+    get("spinner").style.display = "block";
+  } else {
+    console.log(isLoading);
+    get("spinner").style.display = "none";
+  }
 };
 
 loadData();
