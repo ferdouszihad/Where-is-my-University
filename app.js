@@ -10,11 +10,17 @@
 
 // Modal is Now Dynamic
 let isSearch = false;
+let allData = [];
+let allselectedData = getItemFromLocalStorage("selected");
+console.log(allselectedData);
 const loadData = () => {
   const url = "https://bd-education-techsoros.vercel.app/v1/all/";
   fetch(url)
     .then((response) => response.json())
-    .then((data) => displayData(data.result.slice(0, 4)));
+    .then((data) => {
+      allData = data.result;
+      displayData(data.result.slice(0, 4));
+    });
 };
 
 // ////object prototype
@@ -69,6 +75,10 @@ const displayData = (universities) => {
                                type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               See Details
                               </button>
+                              <button onclick=select(${uni.id})
+                               type="button" class="btn btn-warning">
+                              Select
+                              </button>
                            </div>
                         </div>
                      </div>
@@ -89,6 +99,60 @@ const loadDatainModal = (id) => {
     .then((data) => {
       displayModalData(data);
     });
+};
+
+const select = (id) => {
+  const selected = allData.find((data) => data.id === id);
+  if (!allselectedData.find((data) => data.id === id)) {
+    allselectedData.push(selected);
+    localStorage.setItem("selected", JSON.stringify(allselectedData));
+    showSelectedData(allselectedData);
+  }
+};
+const showSelectedData = (data) => {
+  get("select").innerHTML = "";
+  if (data.length == 0) {
+    get("select").innerHTML = "No University is Selected";
+  }
+  data.forEach((uni) => {
+    get("select").innerHTML += `
+   
+  <div class="card mb-3" style="max-width: 540px;">
+     <div class="row g-0">
+        <div class="col-12">
+           <div  style="background:${uni.logo.color}"
+              class=" mt-2 d-flex h-100 align-items-center justify-content-center">
+              <h2>${uni.logo.title}</h2>
+           </div>
+        </div>
+        <div class="col-12">
+           <div class="card-body">
+              <h5 class="card-title">${uni.name}</h5>
+              <button onclick=loadDatainModal(${uni.id})
+               type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              See Details
+              </button>
+              <button id="remove-${uni.id}" onclick="remove('remove-${uni.id}',${uni.id})"
+               type="button" class="btn btn-dark">
+               <i class="fa-solid fa-trash"></i>
+              </button>
+           </div>
+        </div>
+     </div>
+  </div>
+
+`;
+  });
+};
+const remove = (id, uniId) => {
+  get(id).parentNode.parentNode.parentNode.parentNode.remove();
+  removeItemFromLocalStorage("selected", uniId);
+};
+
+const clearAll = () => {
+  get("select").innerHTML = "";
+  clearData("selected");
+  allselectedData = [];
 };
 ///// detail object prototype
 // const uni = {
@@ -235,3 +299,4 @@ const spinner = (isLoading) => {
 };
 
 loadData();
+showSelectedData(allselectedData);
