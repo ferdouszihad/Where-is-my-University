@@ -16,10 +16,10 @@ console.log(allselectedData);
 const loadData = () => {
   const url = "https://bd-education-techsoros.vercel.app/v1/all/";
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => response.json)
     .then((data) => {
-      allData = data.result;
-      displayData(data.result.slice(0, 4));
+      allData = data;
+      displayData(data.slice(0, 4));
     });
 };
 
@@ -63,7 +63,7 @@ const displayData = (universities) => {
                         </div>
                         <div class="col-md-8">
                            <div class="card-body">
-                              <h5 class="card-title">${uni.name}</h5>
+                              <h5 class="card-title">${uni.uniname}</h5>
                               <p class="card-text">
                               ${
                                 uni.description
@@ -75,7 +75,7 @@ const displayData = (universities) => {
                                type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               See Details
                               </button>
-                              <button onclick=select(${uni.id})
+                              <button onclick=selectData(${uni.id})
                                type="button" class="btn btn-warning">
                               Select
                               </button>
@@ -105,7 +105,7 @@ const select = (id) => {
   const selected = allData.find((data) => data.id === id);
   if (!allselectedData.find((data) => data.id === id)) {
     allselectedData.push(selected);
-    localStorage.setItem("selected", JSON.stringify(allselectedData));
+    localStorage.setItem("select", JSON.stringify(allselectedData));
     showSelectedData(allselectedData);
   }
 };
@@ -120,7 +120,7 @@ const showSelectedData = (data) => {
   <div class="card mb-3" style="max-width: 540px;">
      <div class="row g-0">
         <div class="col-12">
-           <div  style="background:${uni.logo.color}"
+           <div  style="background:${uni.logo}"
               class=" mt-2 d-flex h-100 align-items-center justify-content-center">
               <h2>${uni.logo.title}</h2>
            </div>
@@ -145,12 +145,11 @@ const showSelectedData = (data) => {
   });
 };
 const remove = (id, uniId) => {
-  get(id).parentNode.parentNode.parentNode.parentNode.remove();
+  get(id).parentNode.remove();
   removeItemFromLocalStorage("selected", uniId);
 };
 
 const clearAll = () => {
-  get("select").innerHTML = "";
   clearData("selected");
   allselectedData = [];
 };
